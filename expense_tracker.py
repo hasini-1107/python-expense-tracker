@@ -2,11 +2,11 @@ expenses = []
 choice = "y"
 while choice == "y":
     option = int(
-        input("choose 1.add your expenses/ 2. view all expenses/ 3. total spending : "))
+        input("choose 1.add your expenses/ 2. view all expenses/ 3. total spending/ 4. category filter: "))
     if option == 1:
         print("ADD YOUR EXPENSE")
         Amount = int(input("Amount: "))
-        Category = input("Category: ")
+        Category = input("Category: ").lower()
         Description = input("Description: ")
         expense = {
             "Amount": Amount,
@@ -28,5 +28,16 @@ while choice == "y":
         for expense in expenses:
             amount = amount + expense["Amount"]
         print(amount)
+
+    elif option == 4:
+        category = input("enter category to filter: ").lower()
+        for expense in expenses:
+            if category == expense["Category"]:
+                found = True
+                print("amount: ", expense["Amount"],
+                      "\ncategory: ", expense["Category"],
+                      "\ndescription: ", expense["Description"])
+        if not found:
+            print("no expense in this category")
 
     choice = input("do you wanna add another expese:(y/n) ").lower()
